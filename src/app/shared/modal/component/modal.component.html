@@ -1,0 +1,24 @@
+
+<!-- REGRA: Esc deve fechar o modal -->
+<div class="modal-overlay" (click)="overlayClick($event)" (keydown.esc)="modalRef.close()">
+
+  <!-- appFocusTrap e appFocusBack: ver src/app/shared/directives/focus-trap.directive.ts
+       e focus-back.directive.ts
+       role="dialog": o leitor de tela anuncia abertura/fechamento do diálogo
+       aria-modal="true" instrui os screen readers a ler somente o que está dentro
+       aria-label: o leitor de tela já anuncia o título imediatamente
+  -->
+  <div
+    class="modal-content"
+    appFocusTrap
+    appFocusBack
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="config.title">
+    <h1 class="modal-title">{{ config.title }}</h1>
+
+    <!-- exibindo o template -->
+    <ng-container *ngTemplateOutlet="config.templateRef"></ng-container>
+
+  </div>
+</div>
